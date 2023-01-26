@@ -7,12 +7,19 @@ int main(void)
     Configurar_PLL(_20MHZ);  //Confiuracion de velocidad de reloj 50MHZ
     Configurar_GPIO();
     Configurar_UART0();
-    //Configurar_SSI2();
     CONFIGURACION_ADC();
     CONFIGURACION_ADC_Seq();
     
     unsigned int entrada_adc;
+    uint32_t lectura_0;
+    uint32_t lectura_1;
+    uint32_t lectura_2;
+    uint32_t lectura_3;
+    uint32_t lectura_4;
+    uint32_t lectura_5;
+
     while (1){
+        //PROBAR CONFIGURACION
         ADC0 -> PSSI |= (1<<2) | (1<<1);
         while ((ADC0 -> RIS & 6) == 0);
         entrada_adc=ADC0 -> SSFIFO1;
@@ -23,6 +30,19 @@ int main(void)
         else if (entrada_adc < 2048){
             GPIOF -> DATA &= ~(1 << 1); 
         }
+        
+        ADC_LECTURA(adc);
+        lectura_0=adc[0];
+        lectura_1=adc[1];
+        lectura_2=adc[2];
+        lectura_3=adc[3];
+        lectura_4=adc[4];
+        lectura_5=adc[5];
+
+        /*Interrupcion
+        
+        */
+
     }
     }
 
