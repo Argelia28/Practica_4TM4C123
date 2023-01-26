@@ -37,6 +37,7 @@ extern void CONFIGURACION_ADC_Seq(void){
     
     ADC0->SSMUX1 = 0x431; // AN1, AN3, AN4
     ADC0->SSCTL1 = 0x666; // IE & END de los 3 canales
+    ADC0->PC = 0x7; // se configura a 1Msps
     ADC0->IM = (1<<1);
 
     ADC0->ACTSS |= (1<<1); //activar secuenciador
@@ -47,12 +48,28 @@ extern void CONFIGURACION_ADC_Seq(void){
 
     ADC1->SSMUX2 = 0xB95; // AN5, AN9, AN11
     ADC1->SSCTL2 = 0x666;
-    // ADC0->PC = (0<<2)|(0<<1)|(1<<0);//250ksps
+    ADC1->PC = 0x7;// 1Msps
     ADC1->IM = (1<<2);
     
     ADC1->ACTSS |= (1<<2); //activar secuenciadores
     ADC1->ISC = 4;  //*DUDA.
 
+}
+
+extern void ADC_LECTURA(int lectura[6]){
+    ADC0 -> PSSI = (1<<1); //Inicializa sec 1
+    ADC1 -> PSSI = (1<<2); //Inicializa sec 2
+
+    while ((ADC0 -> RIS & 0x2)|(ADC1 -> RIS & 0x4)){}; //la muestra completa la conversion
+    lectura[0] = ADC0->SSFIFO1 & 0xFFF; //resultados
+    lectura[1] = ADC0->SSFIFO1 & 0xFFF;
+    lectura[2] = ADC0->SSFIFO1 & 0xFFF;
+    lectura[3] = ADC1->SSFIFO2 & 0xFFF;
+    lectura[4] = ADC1->SSFIFO2 & 0xFFF;
+    lectura[5] = ADC1->SSFIFO2 & 0xFFF;
+
+    ADC0->ISC = 0x2;
+    ADC1->ISC = 0x4;
 }
 
 
