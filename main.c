@@ -6,7 +6,7 @@ int main(void)
 {
     Configurar_PLL(_20MHZ);  //Confiuracion de velocidad de reloj 50MHZ
     Configurar_GPIO();
-    Configurar_UART0();
+    Configurar_UART4();
     CONFIGURACION_ADC();
     CONFIGURACION_ADC_Seq();
     
