@@ -18,12 +18,12 @@ int main(void)
     uint32_t lectura_4;
     uint32_t lectura_5;
 
-    char cambio_0[2];
-    char cambio_1[2];
-    char cambio_2[2];
-    char cambio_3[2];
-    char cambio_4[2];
-    char cambio_5[2];
+    char cambio_0[4];
+    char cambio_1[4];
+    char cambio_2[4];
+    char cambio_3[4];
+    char cambio_4[4];
+    char cambio_5[4];
 
     while (1){
         //PROBAR CONFIGURACION
