@@ -26,7 +26,7 @@ int main(void)
     char cambio_5[4];
 
     while (1){
-        //PROBAR CONFIGURACION
+        /*PROBAR CONFIGURACION
         ADC0 -> PSSI |= (1<<2) | (1<<1);
         while ((ADC0 -> RIS & 6) == 0);
         entrada_adc=ADC0 -> SSFIFO1;
@@ -36,7 +36,7 @@ int main(void)
         }
         else if (entrada_adc < 2048){
             GPIOF -> DATA &= ~(1 << 1); 
-        }
+        }*/
         
         ADC_LECTURA(adc);
         lectura_0=adc[0];
