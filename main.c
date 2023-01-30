@@ -18,6 +18,13 @@ int main(void)
     uint32_t lectura_4;
     uint32_t lectura_5;
 
+    char cambio_0[2];
+    char cambio_1[2];
+    char cambio_2[2];
+    char cambio_3[2];
+    char cambio_4[2];
+    char cambio_5[2];
+
     while (1){
         //PROBAR CONFIGURACION
         ADC0 -> PSSI |= (1<<2) | (1<<1);
@@ -38,6 +45,14 @@ int main(void)
         lectura_3=adc[3];
         lectura_4=adc[4];
         lectura_5=adc[5];
+
+        // cambiar de entero a caracter
+        itoa(lectura_0,cambio_0,10); //valor a cambiar, arreglo, base
+        itoa(lectura_1,cambio_1,10);
+        itoa(lectura_2,cambio_2,10);
+        itoa(lectura_3,cambio_3,10);
+        itoa(lectura_4,cambio_4,10);
+        itoa(lectura_5,cambio_5,10);
 
         /*Interrupcion
         
